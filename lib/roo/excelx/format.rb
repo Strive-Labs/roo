@@ -41,6 +41,8 @@ module Roo
         format = format.to_s.downcase
         if (type = EXCEPTIONAL_FORMATS[format])
           type
+        elsif format.include?("h:mm AM/PM")
+          :datetime
         elsif format.include?('#')
           :float
         elsif !format.match(/d+(?![\]])/).nil? || format.include?('y')
@@ -60,5 +62,5 @@ module Roo
 
       module_function :to_type
     end
-  end 
+  end
 end
